@@ -54,7 +54,7 @@ How to start:
       b. Rabbit AMQP
 
   2. Configuration properties used: 
-      ```
+
       spring.rabbitmq.host=localhost
       spring.rabbitmq.port=5672
       spring.rabbitmq.username=guest
@@ -70,6 +70,14 @@ How to start:
 
       server.port=8085
 
-      ```
+	  #Email Configuration
+	  com.javabeans.mail.username=<The email from which you want to send messages>
+	  com.javabeans.password=<Your Generated App Password>
+	  com.javabeans.mail.host=smtp.gmail.com
+	  com.javabeans.mail.port=587
+	  com.javabeans.mail.debug=true
+	  com.javabeans.mail.smtp.auth=true
+	  com.javabeans.mail.smtp.starttls.enable=true
+	  com.javabeans.mail.transport.protocol=smtp
 
 
