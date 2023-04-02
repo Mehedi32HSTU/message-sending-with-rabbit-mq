@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.javabeans.email.sending.rabbitmq.RequestDto;
 import com.javabeans.email.sending.rabbitmq.RequestStatusDto;
+import com.javabeans.email.sending.send_email.MailBody;
 
 @Service
 public class RequestProducerServiceImpl implements RequestProducerService {
@@ -28,7 +29,24 @@ public class RequestProducerServiceImpl implements RequestProducerService {
 			requestStatusDto.setMessage("REQUEST IS INPROGRESS");
 			requestStatusDto.setStatus("INPROGRESS");
 
-			rabbitMQSender.send(requestDto);
+			MailBody mailBody = new MailBody();
+			mailBody.setSendTo(requestDto.getSendTo());
+			mailBody.setSendCCTo(requestDto.getSendToCC());
+			mailBody.setMailSubject(requestDto.getSubject());
+			String messageBody = "Dear Sir,\r\n"
+					+ "\r\n"
+					+ "The login credentials are given below,\r\n"
+					+ "\r\n"
+					+ "Username: "+"ABCDEFGHIJKLMNOPQRSTUVWXYZ"+"\r\n"
+					+ "Password: "+"abcdefghijklmnopqrstuvwxyz"+"\r\n"
+					+ "\r\n"
+					+ "Thanks,\r\n"
+					+ "Client Service Team\r\n"
+					+ "JavaBeans";
+
+			mailBody.setMessageBody(messageBody);
+
+			rabbitMQSender.send(mailBody);
 			return ResponseEntity.ok().body(requestStatusDto);
 		} catch (Exception e) {
 			return handleException(e, "publishRequest");

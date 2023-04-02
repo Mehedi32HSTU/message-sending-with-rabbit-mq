@@ -2,9 +2,10 @@ package com.javabeans.email.sending.rabbitmq;
 
 public class RequestDto {
 	private Long requestId;
-	private String requestName;
-	private String requestDescription;
-	private String requestRemarks;
+	private String[] sendTo;
+	private String subject;
+	private String messageBody;
+	private String[] sendToCC;
 
 	public RequestDto() {
 
@@ -18,33 +19,42 @@ public class RequestDto {
 		this.requestId = requestId;
 	}
 
-	public String getRequestName() {
-		return requestName;
+	public String[] getSendTo() {
+		return sendTo;
 	}
 
-	public void setRequestName(String requestName) {
-		this.requestName = requestName;
+	public void setSendTo(String[] sendTo) {
+		this.sendTo = sendTo;
 	}
 
-	public String getRequestDescription() {
-		return requestDescription;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setRequestDescription(String requestDescription) {
-		this.requestDescription = requestDescription;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
 
-	public String getRequestRemarks() {
-		return requestRemarks;
+	public String getMessageBody() {
+		return messageBody;
 	}
 
-	public void setRequestRemarks(String requestRemarks) {
-		this.requestRemarks = requestRemarks;
+	public void setMessageBody(String messageBody) {
+		this.messageBody = messageBody;
+	}
+
+	public String[] getSendToCC() {
+		return sendToCC;
+	}
+
+	public void setSendToCC(String[] sendToCC) {
+		this.sendToCC = sendToCC;
 	}
 
 	@Override
 	public String toString() {
-		return "RequestDto [requestId=" + requestId + ", requestName=" + requestName + ", requestDescription="
-				+ requestDescription + ", requestRemarks=" + requestRemarks + "]";
+		return "RequestDto [requestId=" + requestId + ", sendTo=" + sendTo + ", subject=" + subject + ", messageBody="
+				+ messageBody + ", sendToCC=" + sendToCC + "]";
 	}
+
 }

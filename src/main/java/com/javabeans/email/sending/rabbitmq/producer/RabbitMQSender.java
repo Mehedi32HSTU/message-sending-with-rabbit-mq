@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.javabeans.email.sending.rabbitmq.RequestDto;
+import com.javabeans.email.sending.send_email.MailBody;
 
 @Component
 public class RabbitMQSender {
@@ -19,9 +20,9 @@ public class RabbitMQSender {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 
-	public void send(RequestDto requestDto) {
+	public void send(MailBody mailBody) {
 		try {
-			rabbitTemplate.convertAndSend(exchangeName, routingKey, requestDto);
+			rabbitTemplate.convertAndSend(exchangeName, routingKey, mailBody);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
